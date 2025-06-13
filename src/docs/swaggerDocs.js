@@ -1,24 +1,25 @@
 /**
  * @swagger
  * tags:
- *   - name: Produtos
- *     description: Gerenciamento de produtos
  *   - name: Usuários
  *     description: Gerenciamento de usuários
- *   - name: Categorias
- *     description: Gerenciamento de categorias
- *   - name: Pedidos
- *     description: Gerenciamento de pedidos
  *   - name: Autenticação
  *     description: Rotas de autenticação
+ *   - name: Categorias
+ *     description: Gerenciamento de categorias
+ *   - name: Produtos
+ *     description: Gerenciamento de produtos
+ *   - name: Pedidos
+ *     description: Gerenciamento de pedidos
  */
-
 /**
  * @swagger
  * /api/products:
  *   get:
  *     summary: Lista todos os produtos
  *     tags: [Produtos]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de produtos
@@ -54,6 +55,8 @@
  *   get:
  *     summary: Busca um produto pelo ID
  *     tags: [Produtos]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -144,7 +147,6 @@
  *         description: Email já está em uso
  *
  * /api/users/profile:
- * 
  *   get:
  *     summary: Retorna o perfil do usuário autenticado
  *     tags: [Usuários]
@@ -153,7 +155,6 @@
  *     responses:
  *       200:
  *         description: Perfil do usuário
- *
  *   put:
  *     summary: Atualiza o perfil do usuário autenticado
  *     tags: [Usuários]
@@ -191,12 +192,16 @@
  *   get:
  *     summary: Lista todas as categorias
  *     tags: [Categorias]
+ *     security:
+ *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Lista de categorias
  *   post:
  *     summary: Cria uma nova categoria
  *     tags: [Categorias]
+ *     security:
+ *       - bearerAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -214,6 +219,8 @@
  *   put:
  *     summary: Atualiza uma categoria
  *     tags: [Categorias]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -235,6 +242,8 @@
  *   delete:
  *     summary: Exclui uma categoria
  *     tags: [Categorias]
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
