@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true,
         },
         price: {
-            type: DataTypes.DECIMAL(10, 2), // DECIMAL(10, 2)
+            type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
         stockQuantity: {
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
             defaultValue: 0,
         },
-        categoryId: { // Chave estrangeira para Category
+        categoryId: { 
             type: DataTypes.INTEGER,
             allowNull: false,
         }
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
 
         // Relacionamento N:N com Pedidos através da tabela OrderItem
         Product.belongsToMany(models.Order, {
-            through: models.OrderItem, // Tabela intermediária
+            through: models.OrderItem,
             foreignKey: 'productId',
             as: 'orders',
         });
