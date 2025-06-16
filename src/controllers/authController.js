@@ -24,8 +24,7 @@ exports.register = async (req, res) => {
             email,
             password: hashedPassword,
         });
-
-        // Opcional: Gerar um token JWT para o novo usuário já logar automaticamente
+        
         const token = jwt.sign({ id: newUser.id, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
         res.status(201).json({
