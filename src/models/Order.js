@@ -7,9 +7,9 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false,
         },
         orderDate: {
-            type: DataTypes.DATE, // TIMESTAMP
+            type: DataTypes.DATE,
             allowNull: false,
-            defaultValue: DataTypes.NOW, // Valor padrão para a data atual
+            defaultValue: DataTypes.NOW, 
         },
         totalPrice: {
             type: DataTypes.DECIMAL(10, 2),
