@@ -3,6 +3,12 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const authMiddleware = require('../middlewares/authMiddleware'); 
 
+<<<<<<< HEAD
+=======
+// Rota para criar usuário
+router.post('/', userController.createUser);
+
+>>>>>>> ae5d75931aafda4f3e2dbe28a8cd2af1ea7ba0be
 // Rota para obter o perfil do usuário autenticado
 router.get('/profile', authMiddleware, userController.getProfile);
 

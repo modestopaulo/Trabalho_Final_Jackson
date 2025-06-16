@@ -83,3 +83,37 @@ exports.deleteAccount = async (req, res) => {
         res.status(500).json({ message: 'Erro interno do servidor ao excluir conta.' });
     }
 };
+<<<<<<< HEAD
+=======
+
+// Controlador para criar um novo usuário
+exports.createUser = async (req, res) => {
+    try {
+        const { name, email, password, telefone } = req.body;
+        
+        const existingUser = await User.findOne({ where: { email } });
+        if (existingUser) {
+            return res.status(409).json({ message: 'Este email já está em uso.' });
+        }
+        
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Cria o usuário
+        const newUser = await User.create({
+            name,
+            email,
+            password: hashedPassword,
+            telefone 
+        });
+
+        res.status(201).json({
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email
+        });
+    } catch (error) {
+        console.error('Erro ao criar usuário:', error);
+        res.status(500).json({ message: 'Erro interno do servidor ao criar usuário.' });
+    }
+};
+>>>>>>> ae5d75931aafda4f3e2dbe28a8cd2af1ea7ba0be

@@ -121,6 +121,34 @@
 
 /**
  * @swagger
+<<<<<<< HEAD
+=======
+ * /api/users:
+ *   post:
+ *     summary: Cria um novo usuário
+ *     tags: [Usuários]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               telefone:
+ *                 type: string
+ *     responses:
+ *       201:
+ *         description: Usuário criado com sucesso
+ *       409:
+ *         description: Email já está em uso
+ *
+>>>>>>> ae5d75931aafda4f3e2dbe28a8cd2af1ea7ba0be
  * /api/users/profile:
  *   get:
  *     summary: Retorna o perfil do usuário autenticado
