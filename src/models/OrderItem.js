@@ -6,25 +6,25 @@ module.exports = (sequelize, DataTypes) => {
             autoIncrement: true,
             allowNull: false,
         },
-        quantity: { // Quantidade de um produto específico neste pedido
+        quantity: { 
             type: DataTypes.INTEGER,
             allowNull: false,
             defaultValue: 1,
         },
-        price: { // Preço do produto no momento do pedido (pode variar com o tempo)
+        price: { 
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
-        orderId: { // Chave estrangeira para Order
+        orderId: { 
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        productId: { // Chave estrangeira para Product
+        productId: { 
             type: DataTypes.INTEGER,
             allowNull: false,
         }
     }, {
-        tableName: 'order_items', // Nome da tabela intermediária
+        tableName: 'order_items',
     });
 
     OrderItem.associate = (models) => {
