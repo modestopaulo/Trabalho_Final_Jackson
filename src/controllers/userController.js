@@ -6,9 +6,8 @@ const User = db.User;
 // Controlador para obter o perfil do usuário autenticado
 exports.getProfile = async (req, res) => {
     try {
-        // O ID do usuário vem do middleware de autenticação (req.userId)
         const user = await User.findByPk(req.userId, {
-            attributes: ['id', 'name', 'email'], // Excluir a senha
+            attributes: ['id', 'name', 'email'],
         });
 
         if (!user) {
@@ -26,9 +25,9 @@ exports.getProfile = async (req, res) => {
     }
 };
 
-// Controlador para atualizar o perfil do usuário autenticado
+
 exports.updateProfile = async (req, res) => {
-    const { name, email, password } = req.body; // A senha pode ser opcionalmente atualizada
+    const { name, email, password } = req.body; 
 
     try {
         const user = await User.findByPk(req.userId);
@@ -36,26 +35,23 @@ exports.updateProfile = async (req, res) => {
             return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
 
-        // Se o email foi fornecido e é diferente, verificar se já existe
         if (email && email !== user.email) {
             const existingUser = await User.findOne({ where: { email } });
-            if (existingUser && existingUser.id !== user.id) { // Garante que não é o próprio usuário
+            if (existingUser && existingUser.id !== user.id) {
                 return res.status(409).json({ message: 'Este email já está em uso.' });
             }
             user.email = email;
         }
 
-        // Atualizar nome se fornecido
         if (name) {
             user.name = name;
         }
-
-        // Se uma nova senha foi fornecida, fazer o hash
+        
         if (password) {
             user.password = await bcrypt.hash(password, 10);
         }
 
-        await user.save(); // Salvar as alterações
+        await user.save();
 
         res.status(200).json({
             message: 'Perfil atualizado com sucesso!',
@@ -79,7 +75,7 @@ exports.deleteAccount = async (req, res) => {
             return res.status(404).json({ message: 'Usuário não encontrado.' });
         }
 
-        await user.destroy(); // Excluir o usuário
+        await user.destroy();
 
         res.status(200).json({ message: 'Conta excluída com sucesso!' });
     } catch (error) {
@@ -92,14 +88,12 @@ exports.deleteAccount = async (req, res) => {
 exports.createUser = async (req, res) => {
     try {
         const { name, email, password, telefone } = req.body;
-
-        // Verifica se o email já existe
+        
         const existingUser = await User.findOne({ where: { email } });
         if (existingUser) {
             return res.status(409).json({ message: 'Este email já está em uso.' });
         }
-
-        // Criptografa a senha
+        
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // Cria o usuário
